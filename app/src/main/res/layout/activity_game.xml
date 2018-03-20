@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GameActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_bg_white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/toolbar_line"/>
+
+        <com.jd.fill2.utilView.HequalVButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/game_back"
+            android:background="@drawable/back"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/game_level_text"
+            android:text="Level"
+            android:textColor="@color/map_item_content_pass"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/game_back"
+            android:gravity="center"
+            android:layout_marginStart="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/game_button_vedio"
+                android:layout_gravity="center"
+                android:src="@drawable/vedio_icon"
+                android:padding="12dp"
+                android:background="@color/color_paht1"
+                android:layout_marginBottom="1dp"/>
+
+            <RelativeLayout
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/game_button_hint"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/hint"
+                    android:padding="13dp"
+                    android:background="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/game_hint_num"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:text="100"
+                    android:textColor="#FFF"
+                    android:textSize="13sp"/>
+
+            </RelativeLayout>
+
+
+
+
+            <ImageView
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/game_button_home"
+                android:layout_gravity="center"
+                android:src="@drawable/home"
+                android:padding="15dp"/>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <com.jd.fill2.view.GameView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gameView"
+        android:layout_centerInParent="true"
+        android:layout_margin="20px">
+
+    </com.jd.fill2.view.GameView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/center_assist"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/game_tourist"
+        android:src="@drawable/touris"
+        android:layout_alignLeft="@+id/gameView"
+        android:layout_below="@+id/center_assist"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:id="@+id/win_fragment_parent">
+
+    </FrameLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner_View"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-9291877653530829/3458656998">
+
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>

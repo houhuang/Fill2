@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="a7760a45a6c9f425aaa43ef391a8cf28a8bcb4a1">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-gass-11.8.0_df3f7ade2a757dedf94c3069c488f0bcbd7fdc46.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.3.1_0db43d13b2694c1fcf58198a63f4c7ba1c068e79.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d5ee4b7829f6ec48400e678cc969176f455cb14c">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/io.fabric.sdk.android-fabric-1.4.1_b5169159141a33be17e52918c1c6b8cb910c6e98.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="122de0d704f76d2bb5cb9db66e00fe90a0a41e78">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-11.8.0_811462e97ac397faa22ed1c6ebe66ec759c9e93f.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="42c9659c973e311ffdb645ed057e5053e0ab5c78">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-11.8.0_7472a2479e4df0a279dacf87f199090650a85fde.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/cn.gavinliu.android.lib/ShapedImageView/0.4/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="24e45ec1593aef51584bbbdaa571ac308b97bb28">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/cn.gavinliu.android.lib-ShapedImageView-0.4_ca6cddd0db17cf6f153470619806b11028d0260c.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="5ad3911825107d8dd4b017fdecebfd23c08048dd">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-11.8.0_814033f15618cb25d6c7cc9f85dd855e6c247d68.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.3.1_0ff7de571e41428e26916040f5060d5cba01d346.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.3.1_21daf917342c0d1982db75ce3a0b3ac29bb5f1d0.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.3.1_070ebb95781ffe8a260987901d856f92b8845821.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-25.3.1_a4a6f67a1ee1d82be3d13ba8c6334dcb82a3e419.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="e6aeff19a2ce1eb896557be73cb9ceb56f8d1cf3">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-11.8.0_369f1790d4aeef305534fd884a91b56b286c9d83.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.7.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="cc343a74c077ec04bbedf0c88f8a5473306edc78">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-crashlytics-2.7.1_f0deee4199fdb8a28e6e0ce9c6546e45a704e01f.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.7/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="5a743d0934e90e7f26d75a2463142c4b884b2981">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-beta-1.2.7_87a4741fba593414afd552d6619868016a565bd1.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.3.1_8b91efc69311717c0b868d8e3ea6b05d0746c982.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/okio-1.9.0_0b9887d6d14af40a994f032d4395ba3e19d35529.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="264ad23f9752aabecfa41115c52a25a023a08839">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-11.8.0_e7ba54995e88ee0da27c651298a86ff1009d1a1c.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d2af2ef4d987d753f2e8ee2d1480ab964d5c7273">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-11.8.0_bee5fb53aaf1517732910c843d21f1af76154138.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.3.1_3994ae4f80d60fb6a46b89398465f1f15562dcf4.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.3.1_c1436935485eb064fe3a1288125a18ae6200ba62.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="e234aabd1c11160b5f76f50c5c53a324be322ede">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-crashlytics-core-2.4.1_d8a420535ea50f0a6ffce21a153e8a74408368f9.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="aeca0a0ab86831ec59a54723205ce9341ac22d1b">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-ads-11.8.0_b4e00b5c9e494f16b182ae49c51ccb49914590b3.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_e9dd0a5d8be1301bef036604755abf453940ef52.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.3.1_c3f54503fc763fcd69ba9ca6c394636cc550c148.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/11.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="24cb9bae5fbe94df0f55d87452a291b69a2f22bf">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-ads-lite-11.8.0_262ba4e2f26ce1be65424ac71b98e674bfb34449.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.3.1_9ea0a75c4df0fa0db01b5308824353d27027a268.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/25.3.1/bf8841d29fa39e077730e7a91222c2ce269fa7c9/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_037ad2e5a5544da7194e70ee8b8a9b0320cd8ebc.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="13430a12bb2eb82b397f10f61fe1f6989279c6bd">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-answers-1.4.1_a014ac005f60c6e64aab3cb4aaae3e2363438dd3.jar" />
+    </item>
+    <item
+        jar="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/houhuang/Desktop/Android test/Fill2/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.3.1_11d3f814c7d94caf031ccbfa7886ba242cf1fa00.jar" />
+    </item>
+
+</items>

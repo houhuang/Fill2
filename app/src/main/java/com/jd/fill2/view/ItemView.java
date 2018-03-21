@@ -18,6 +18,7 @@ public class ItemView extends View {
     private Paint mPaint;
     private Paint mPaint2;
     private int mTag = 9;
+    private float mRadios;
 
 
     public ItemView(Context context) {
@@ -49,12 +50,12 @@ public class ItemView extends View {
     {
         mTag = tag;
 
-        if (tag == 0 || tag == 3)
+        if (tag == 0 || tag == 2)
         {
             mPaint.setColor(ContextCompat.getColor(mContext, R.color.color_black));
             mPaint2.setColor(ContextCompat.getColor(mContext, R.color.color_black));
 
-        }else if (tag == 1 || tag == 4)
+        }else if (tag == 1 || tag == 3)
         {
             mPaint.setColor(ContextCompat.getColor(mContext, R.color.color_white));
             mPaint2.setColor(ContextCompat.getColor(mContext, R.color.color_white));
@@ -67,9 +68,39 @@ public class ItemView extends View {
     }
 
 
+    public void setItemIsclicked(boolean isClick)
+    {
+        if (isClick)
+        {
+            mRadios = (float) (getMeasuredWidth() * 0.45);
+        }else
+        {
+            mRadios = (float) (getMeasuredWidth() * 0.4);
+        }
+
+        postInvalidate();
+    }
+
+    public void reverse()
+    {
+        if (mTag == 0 || mTag == 2)
+        {
+            mTag = 1;
+        }else if (mTag == 1 || mTag == 3)
+        {
+            mTag = 0;
+        }
+
+        setItemIsclicked(false);
+        setItemTag(mTag);
+
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+
+        mRadios = (float) (getMeasuredWidth() * 0.4);
     }
 
     @Override
@@ -78,17 +109,14 @@ public class ItemView extends View {
 
         if (mTag != 9)
         {
-
-
-            if (mTag == 3 || mTag == 4)
+            if (mTag == 2 || mTag == 3)
             {
                 float radios = (float) (getMeasuredWidth() * 0.3);
                 mPaint2.setStrokeWidth((float) (getMeasuredWidth()*0.2));
                 canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, radios, mPaint2);
             }else
             {
-                float radios = (float) (getMeasuredWidth() * 0.4);
-                canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, radios, mPaint);
+                canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, mRadios, mPaint);
             }
         }
 

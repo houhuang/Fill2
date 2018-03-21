@@ -143,6 +143,24 @@ public class GameItem extends FrameLayout {
         mContentView.setItemTag(tag);
     }
 
+    public void setIsclicked(boolean isclicked)
+    {
+        mContentView.setItemIsclicked(isclicked);
+    }
+
+    public void reverse()
+    {
+        if (mItemTag == 0 || mItemTag == 2)
+        {
+            mItemTag = 1;
+        }else if (mItemTag == 1 || mItemTag == 3)
+        {
+            mItemTag = 0;
+        }
+
+        mContentView.reverse();
+    }
+
     public int getRow()
     {
         return row;

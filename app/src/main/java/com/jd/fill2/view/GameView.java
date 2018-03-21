@@ -192,37 +192,20 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 int index = i * mGameVLines + j;
                 if (mItemInfo.getState()[index] == 0)
                 {
-                    //stone
                     mGameMatrix[i][j].setItemTag(0);
                 }else if (mItemInfo.getState()[index] == 1)
                 {
-                    //radish
                     mGameMatrix[i][j].setItemTag(1);
-                    mNeedClickItem ++;
+                }else if (mItemInfo.getState()[index] == 2)
+                {
+                    mGameMatrix[i][j].setItemTag(2);
                 }else if (mItemInfo.getState()[index] == 3)
                 {
-                    // start radish
                     mGameMatrix[i][j].setItemTag(3);
-                    mNeedClickItem ++;
-
-                    mFirstItem = mGameMatrix[i][j];
-                    mCurrentItem = mFirstItem;
-                }else if (mItemInfo.getState()[index] == 4)
-                {
-                    // start radish
-                    mGameMatrix[i][j].setItemTag(4);
-                    mNeedClickItem ++;
-
-                    mFirstItem = mGameMatrix[i][j];
-                    mCurrentItem = mFirstItem;
                 }else if (mItemInfo.getState()[index] == 9)
                 {
-                    // start radish
                     mGameMatrix[i][j].setItemTag(9);
-                    mNeedClickItem ++;
 
-                    mFirstItem = mGameMatrix[i][j];
-                    mCurrentItem = mFirstItem;
                 }
 
 
@@ -242,55 +225,16 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 mStartX = (int)event.getX();
                 mStartY = (int)event.getY();
 
-                boolean is = isClickStartTarget(mStartX, mStartY, mCurrentItem);
-                if (is)
+                GameItem clickItem = getClickStartTarget(mStartX, mStartY);
+                if (clickItem != null && (clickItem.getItemTag() == 2 || clickItem.getItemTag() == 3))
                 {
                     isClickStartTarget = true;
-                    if (mAlreadyClickItem.size() == 0)
-                    {
-                        mAlreadyClickItem.add(mCurrentItem);
-                    }
+                    mCurrentItem = clickItem;
+                    mCurrentItem.setIsclicked(true);
+                    mAlreadyClickItem.add(mCurrentItem);
                 }else
                 {
-                    clickItem = isClickAlreadyExitTarget(mStartX, mStartY);
-
-                    if (clickItem != null)
-                    {
-                        isClickStartTarget = true;
-                        int index = -1;
-                        for (int i = 0; i < mAlreadyClickItem.size(); ++i)
-                        {
-                            if (mAlreadyClickItem.get(i) == clickItem)
-                            {
-                                index = i;
-                            }
-                        }
-
-                        if (index != -1)
-                        {
-                            int count = mAlreadyClickItem.size() - index - 1;
-
-                            for (int i = 0; i < count; ++i)
-                            {
-                                mAlreadyClickItem.get(mAlreadyClickItem.size() - 1).clearPathFromDir();
-
-                                mAlreadyClickItem.remove(mAlreadyClickItem.size() - 1);
-                            }
-
-                            if (index == 0)
-                            {
-                                mCurrentItem = mFirstItem;
-                                mCurrentItem.clearPathFromDir();
-                            }else
-                            {
-                                mCurrentItem = mAlreadyClickItem.get(mAlreadyClickItem.size() - 1);
-                            }
-
-                            mCurrentItem.clearPathNotFirst();
-
-                            Config.playSounds(0);
-                        }
-                    }
+                    isClickStartTarget = false;
                 }
 
             }
@@ -298,112 +242,57 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
             case MotionEvent.ACTION_MOVE:
             {
-                GameItem item = getClickItem((int)event.getX(), (int) event.getY());
-                if (item != null && item != mCurrentItem && isClickStartTarget && item.getItemTag() != 0)
+                GameItem item = getClickStartTarget((int)event.getX(), (int) event.getY());
+                if (item != null && item != mCurrentItem && isClickStartTarget && item.getItemTag() != 9)
                 {
-                    if (item == mFirstItem)
+                    if (!isExistAlReady(item))
                     {
-                        for (int i = 0; i < mAlreadyClickItem.size(); ++i)
+                        if (isAround(item, mAlreadyClickItem.get(mAlreadyClickItem.size() - 1)))
                         {
-                            mAlreadyClickItem.get(i).clearPathFromDir();
+                            item.setIsclicked(true);
+                            mAlreadyClickItem.add(item);
+                            mCurrentItem = item;
                         }
-                        mAlreadyClickItem.clear();
-                        mCurrentItem = mFirstItem;
-                        mCurrentItem.clearPathFromDir();
-                        mAlreadyClickItem.add(mCurrentItem);
 
-                        Config.playSounds(0);
                     }else
                     {
-                        int index = -1;
-                        for (int i = 0; i < mAlreadyClickItem.size(); ++i)
+                        int idx = mAlreadyClickItem.size() - 2;
+                        if (idx >= 0)
                         {
-                            if (mAlreadyClickItem.get(i) == item)
+                            if (mAlreadyClickItem.get(idx) == item)
                             {
-                                index = i;
-                            }
-                        }
-
-                        if (index != -1)
-                        {
-                            int count = mAlreadyClickItem.size() - index - 1;
-                            for (int i = 0; i < count; ++i)
-                            {
-                                mAlreadyClickItem.get(mAlreadyClickItem.size() - 1).clearPathFromDir();
-
-                                mAlreadyClickItem.remove(mAlreadyClickItem.size() - 1);
-                            }
-                            mCurrentItem = mAlreadyClickItem.get(mAlreadyClickItem.size() - 1);
-                            mCurrentItem.clearPathNotFirst();
-
-                            Config.playSounds(0);
-                        }else
-                        {
-                            int moveDir = isMoveDirFromNext(mCurrentItem, item);
-                            int moveDirFormPre = isMoveDirFromPre(mCurrentItem, item);
-                            if (moveDir > 0)
-                            {
-                                if (moveDirFormPre == 1)
-                                {
-                                    mCurrentItem.setDrawRight(true);
-                                }else if (moveDirFormPre == 2)
-                                {
-                                    mCurrentItem.setDrawLeft(true);
-                                }else if (moveDirFormPre == 3)
-                                {
-                                    mCurrentItem.setDrawTop(true);
-                                }else if (moveDirFormPre == 4)
-                                {
-                                    mCurrentItem.setDrawBottom(true);
-                                }
-                                mCurrentItem.showPathFromDir();
-
-                                mCurrentItem = item;
-                                mAlreadyClickItem.add(mCurrentItem);
-
-                                if (moveDir == 1)
-                                {
-                                    mCurrentItem.setDrawRight(true);
-                                }else if (moveDir == 2)
-                                {
-                                    mCurrentItem.setDrawLeft(true);
-                                }else if (moveDir == 3)
-                                {
-                                    mCurrentItem.setDrawTop(true);
-                                }else if (moveDir == 4)
-                                {
-                                    mCurrentItem.setDrawBottom(true);
-                                }
-                                mCurrentItem.showPathFromDir();
-
-                                if (isCompleted())
-                                {
-                                    if (listener != null)
-                                    {
-                                        listener.OnCompleted();
-                                        Config.playSounds(1);
-                                    }
-
-                                }else
-                                {
-                                    Config.playSounds(0);
-                                }
+                                int index = idx + 1;
+                                mAlreadyClickItem.get(index).setIsclicked(false);
+                                mAlreadyClickItem.remove(index);
+                                mCurrentItem = mAlreadyClickItem.get(index - 1);
                             }
 
                         }
+
                     }
+
                 }
             }
             break;
 
             case MotionEvent.ACTION_UP:
             {
-//                if (!isClickStartTarget)
+                if (isClickStartTarget)
                 {
+                    if (mAlreadyClickItem.size() == 1)
+                    {
+                        mAlreadyClickItem.get(0).setIsclicked(false);
+                    }else
+                    {
+                        for (int i = 0; i < mAlreadyClickItem.size(); ++i )
+                        {
+                            mAlreadyClickItem.get(i).reverse();
+                        }
+                    }
+
 
                 }
-
-
+                mAlreadyClickItem.clear();
                 isClickStartTarget = false;
 
 
@@ -518,6 +407,24 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         return false;
     }
 
+    private boolean isAround(GameItem preItem, GameItem nexItem)
+    {
+        if (preItem.getRow() == nexItem.getRow() &&
+                Math.abs(preItem.getCol() - nexItem.getCol()) == 1)
+        {
+            return true;
+        }
+
+        if (preItem.getCol() == nexItem.getCol() &&
+                Math.abs(preItem.getRow() - nexItem.getRow()) == 1)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
     private int isMoveDirFromNext(GameItem preItem, GameItem nexItem)
     {
         //0不能移动     1-Right      2-Left     3-Top   4-Bottom
@@ -574,14 +481,24 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         return 0;
     }
 
-    private boolean isClickStartTarget(int posX, int posY, GameItem target)
+    private GameItem getClickStartTarget(int posX, int posY)
     {
-        if (posX >= target.getLeft() && posX <= target.getRight()
-                && posY >= target.getTop() && posY <= target.getBottom())
+        for (int i = 0; i < mGameHLines; ++i)
         {
-            return true;
+            for (int j = 0; j < mGameVLines; ++j)
+            {
+                GameItem item = mGameMatrix[i][j];
+
+                if (posX >= item.getLeft() && posX <= item.getRight()
+                        && posY >= item.getTop() && posY <= item.getBottom())
+                {
+                    return item;
+                }
+            }
         }
-        return false;
+
+
+        return null;
     }
 
     private GameItem isClickAlreadyExitTarget(int posX, int posY)
@@ -600,22 +517,33 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         return null;
     }
 
-    private GameItem getClickItem(int pox, int poy)
+    private boolean isExistAlReady(GameItem item)
     {
-        for (int i = 0; i < mGameHLines; ++i)
+        for (int i = 0; i < mAlreadyClickItem.size(); ++i)
         {
-            for (int j = 0; j < mGameVLines; ++j)
-            {
-                if (mGameMatrix[i][j].getItemTag() != 0)
-                {
-                    if (isClickStartTarget(pox, poy, mGameMatrix[i][j]))
-                    {
-                        return mGameMatrix[i][j];
-                    }
-                }
-            }
+            if (item == mAlreadyClickItem.get(i))
+                return true;
         }
-        return null;
+
+        return false;
     }
+
+//    private GameItem getClickItem(int pox, int poy)
+//    {
+//        for (int i = 0; i < mGameHLines; ++i)
+//        {
+//            for (int j = 0; j < mGameVLines; ++j)
+//            {
+//                if (mGameMatrix[i][j].getItemTag() != 0)
+//                {
+//                    if (isClickStartTarget(pox, poy, mGameMatrix[i][j]))
+//                    {
+//                        return mGameMatrix[i][j];
+//                    }
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
 }

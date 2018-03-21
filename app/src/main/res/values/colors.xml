@@ -16,6 +16,9 @@
     <color name="map_item_content_pass">#26AF55</color>
     <color name="map_item_content_nopass">#767676</color>
 
+    <color name="color_black">#000</color>
+    <color name="color_white">#fff</color>
+
     <color name="color_paht1">#FF6A44</color>
     <color name="color_paht2">#E9B11B</color>
     <color name="color_paht3">#C8B864</color>

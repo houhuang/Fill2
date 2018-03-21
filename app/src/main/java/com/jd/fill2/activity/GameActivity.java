@@ -55,17 +55,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         StatusBarUtil.setWindowStatusBarColor(this, R.color.status_bar_map_color);
         StatusBarUtil.StatusBarLightMode(this);
 
-        mAdView = (AdView) findViewById(R.id.banner_View);
-        mAdRequest = new AdRequest.Builder().addTestDevice(AdsManager.TEST_DEVICE_ID).build();
-        mAdView.loadAd(mAdRequest);
-        mAdView.setAdListener(new AdListener(){
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-                mAdView.loadAd(mAdRequest);
-            }
-        });
+//        mAdView = (AdView) findViewById(R.id.banner_View);
+//        mAdRequest = new AdRequest.Builder().addTestDevice(AdsManager.TEST_DEVICE_ID).build();
+//        mAdView.loadAd(mAdRequest);
+//        mAdView.setAdListener(new AdListener(){
+//
+//            @Override
+//            public void onAdFailedToLoad(int i) {
+//                super.onAdFailedToLoad(i);
+//                mAdView.loadAd(mAdRequest);
+//            }
+//        });
 
         bindView();
     }
@@ -192,13 +192,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void hideWinFragment()
     {
-        mAdView.setVisibility(View.VISIBLE);
+//        mAdView.setVisibility(View.VISIBLE);
         mFragmentParent.setVisibility(View.GONE);
     }
 
     private void showWinFragment()
     {
-        mAdView.setVisibility(View.INVISIBLE);
+//        mAdView.setVisibility(View.INVISIBLE);
         mWinFragment.updateContent();
         mFragmentParent.setVisibility(View.VISIBLE);
 

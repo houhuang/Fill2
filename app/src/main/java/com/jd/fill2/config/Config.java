@@ -49,7 +49,7 @@ public class Config extends Application {
         mCurrentLevel = mSp.getInt(KEY_CURRENT_LEVEL, 0);
         mSoundsIsOpen = mSp.getBoolean(KEY_SHOUNDS_ISOPEN, true);
         mHintNum = mSp.getInt(KEY_HINT_NUM, 20);
-//        mHintNum = 1000;
+        mHintNum = 1000;
 
         mIsRateus = mSp.getBoolean(KEY_ALREADY_RATEUS, false);
         mRateUsCount = mSp.getInt(KEY_RATEUS_COUNT, 0);

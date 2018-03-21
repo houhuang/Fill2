@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bindView();
 
-        downloadJsonFile();
+//        downloadJsonFile();
         Crashlytics.getInstance();
 
-        AdsManager.initAds(getApplicationContext());
+//        AdsManager.initAds(getApplicationContext());
     }
 
     private void bindView()

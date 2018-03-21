@@ -49,9 +49,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
     private Context mContext;
 
-    private Bitmap mRadishWhite;
-    private Bitmap mRadishRed;
-
     private List<Bitmap> mRabishs = new ArrayList<Bitmap>();
 
     private int mHintIndex = 1;
@@ -85,12 +82,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
     {
         super(context);
         mContext = context;
-
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish3_h));
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish3_d));
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish4_h));
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish4_d));
-
         initGameMatrix();
     }
 
@@ -98,12 +89,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
     {
         super(context, attrs);
         mContext = context;
-
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish3_h));
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish3_d));
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish4_h));
-        mRabishs.add(FileUtil.getBitmapFromDrawable(mContext, R.drawable.radish4_d));
-
         initGameMatrix();
     }
 
@@ -120,9 +105,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
     {
         Random random = new Random();
         int rIdx = random.nextInt(2);
-
-        mRadishWhite = mRabishs.get(rIdx * 2 + 1);
-        mRadishRed = mRabishs.get(rIdx * 2);
 
         mAlreadyClickItem.clear();
 
@@ -162,13 +144,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
             initGameView((int)(metrics.widthPixels - 50 * ScreenUtil.getScreenDensity(mContext)) / size);
         }
 
-//        if (Config.mChooseLevel == 0)
-//        {
-//            ImageView tourist = new ImageView(mContext);
-//            tourist.setImageBitmap(FileUtil.getBitmapFromDrawable(mContext, R.drawable.touris));
-//            addView(tourist);
-//        }
-
     }
 
     private void initGameView(int cardSize)
@@ -206,7 +181,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     }
                 }
 
-                card = new GameItem(getContext(), isTrue, mPathColor[cIndex], mRadishRed, mRadishWhite);
+                card = new GameItem(getContext(), isTrue, mPathColor[cIndex]);
                 addView(card, cardSize, cardSize);
 
                 // 初始化GameMatrix全部为0 空格List为所有
@@ -218,16 +193,32 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 if (mItemInfo.getState()[index] == 0)
                 {
                     //stone
-                    mGameMatrix[i][j].setItemTag(0, mRadishRed);
+                    mGameMatrix[i][j].setItemTag(0);
                 }else if (mItemInfo.getState()[index] == 1)
                 {
                     //radish
-                    mGameMatrix[i][j].setItemTag(1, mRadishRed);
+                    mGameMatrix[i][j].setItemTag(1);
                     mNeedClickItem ++;
-                }else if (mItemInfo.getState()[index] == 2)
+                }else if (mItemInfo.getState()[index] == 3)
                 {
                     // start radish
-                    mGameMatrix[i][j].setItemTag(2, mRadishRed);
+                    mGameMatrix[i][j].setItemTag(3);
+                    mNeedClickItem ++;
+
+                    mFirstItem = mGameMatrix[i][j];
+                    mCurrentItem = mFirstItem;
+                }else if (mItemInfo.getState()[index] == 4)
+                {
+                    // start radish
+                    mGameMatrix[i][j].setItemTag(4);
+                    mNeedClickItem ++;
+
+                    mFirstItem = mGameMatrix[i][j];
+                    mCurrentItem = mFirstItem;
+                }else if (mItemInfo.getState()[index] == 9)
+                {
+                    // start radish
+                    mGameMatrix[i][j].setItemTag(9);
                     mNeedClickItem ++;
 
                     mFirstItem = mGameMatrix[i][j];
@@ -283,7 +274,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                             {
                                 mAlreadyClickItem.get(mAlreadyClickItem.size() - 1).clearPathFromDir();
 
-                                mAlreadyClickItem.get(mAlreadyClickItem.size() - 1).setRadishColor(true);
                                 mAlreadyClickItem.remove(mAlreadyClickItem.size() - 1);
                             }
 
@@ -316,7 +306,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                         for (int i = 0; i < mAlreadyClickItem.size(); ++i)
                         {
                             mAlreadyClickItem.get(i).clearPathFromDir();
-                            mAlreadyClickItem.get(i).setRadishColor(true);
                         }
                         mAlreadyClickItem.clear();
                         mCurrentItem = mFirstItem;
@@ -342,7 +331,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                             {
                                 mAlreadyClickItem.get(mAlreadyClickItem.size() - 1).clearPathFromDir();
 
-                                mAlreadyClickItem.get(mAlreadyClickItem.size() - 1).setRadishColor(true);
                                 mAlreadyClickItem.remove(mAlreadyClickItem.size() - 1);
                             }
                             mCurrentItem = mAlreadyClickItem.get(mAlreadyClickItem.size() - 1);
@@ -371,7 +359,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                                 mCurrentItem.showPathFromDir();
 
                                 mCurrentItem = item;
-                                mCurrentItem.setRadishColor(false);
                                 mAlreadyClickItem.add(mCurrentItem);
 
                                 if (moveDir == 1)
@@ -453,7 +440,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         for (int i = 0; i < mAlreadyClickItem.size(); ++i)
         {
             mAlreadyClickItem.get(i).clearPathFromDir();
-            mAlreadyClickItem.get(i).setRadishColor(true);
         }
         mAlreadyClickItem.clear();
         mCurrentItem = mFirstItem;
@@ -470,7 +456,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
             {
                 mCurrentItem.setDrawTop(true);
                 mCurrentItem.showPathFromDir();
-                mCurrentItem.setRadishColor(false);
 
                 GameItem item = mGameMatrix[row - 1][col];
                 item.setDrawBottom(true);
@@ -481,7 +466,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
             {
                 mCurrentItem.setDrawBottom(true);
                 mCurrentItem.showPathFromDir();
-                mCurrentItem.setRadishColor(false);
 
                 GameItem item = mGameMatrix[row + 1][col];
                 item.setDrawTop(true);
@@ -493,7 +477,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
             {
                 mCurrentItem.setDrawLeft(true);
                 mCurrentItem.showPathFromDir();
-                mCurrentItem.setRadishColor(false);
 
                 GameItem item = mGameMatrix[row][col - 1];
                 item.setDrawRight(true);
@@ -505,7 +488,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
             {
                 mCurrentItem.setDrawRight(true);
                 mCurrentItem.showPathFromDir();
-                mCurrentItem.setRadishColor(false);
 
                 GameItem item = mGameMatrix[row][col + 1];
                 item.setDrawLeft(true);
@@ -516,7 +498,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         }
 
         mCurrentItem.showPathFromDir();
-        mCurrentItem.setRadishColor(false);
 
         if (mHintIndex <= 3 || mHintIndex == 10)
         {

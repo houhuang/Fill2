@@ -19,10 +19,10 @@ public class AdsManager {
 
     public static Context mContext;
 
-    public static final String MOPUB_ID = "ca-app-pub-9291877653530829~5145474886";
+    public static final String MOPUB_ID = "";
 
-    public static final String ADS_VEDIO_ID = "ca-app-pub-9291877653530829/2831971033";
-    public static final String ADS_FULL_ID = "ca-app-pub-9291877653530829/7014758627";
+    public static final String ADS_VEDIO_ID = "";
+    public static final String ADS_FULL_ID = "";
 
     public static final String TEST_DEVICE_ID = "9B91B1E26590A312CE79F38C409461E9t";
 

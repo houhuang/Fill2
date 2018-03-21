@@ -4,14 +4,18 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jd.fill2.R;
 import com.jd.fill2.util.FileUtil;
+import com.jd.fill2.view.ItemView;
 
 import java.util.Random;
+
+import cn.gavinliu.android.lib.shapedimageview.ShapedImageView;
 
 /**
  * Created by Administrator on 2018/3/11 0011.
@@ -32,30 +36,17 @@ public class GameItem extends FrameLayout {
     private int col = 0;
 
     private LeftAndTopView mPathView;
-    private ImageView contentImage;
 
     private int mColor;
 
-    private final int[] stone = {R.drawable.ston1, R.drawable.ston2,
-            R.drawable.ston3, R.drawable.ston4,
-            R.drawable.ston5, R.drawable.ston6,
-            R.drawable.ston7, R.drawable.ston8,
-            R.drawable.ston9};
+    private ItemView mContentView;
 
-    private final int[] rabbit = {R.drawable.rabbit1, R.drawable.rabbit2, R.drawable.rabbit3};
-
-    private Bitmap mRadishWhite;
-    private Bitmap mRadishRed;
-
-    public GameItem(Context context, boolean isWhite, int color, Bitmap red, Bitmap white)
+    public GameItem(Context context, boolean isWhite, int color)
     {
         super(context);
         this.isWhite = isWhite;
         mContext = context;
         mColor = color;
-
-        mRadishRed = red;
-        mRadishWhite = white;
 
         initCardItem();
     }
@@ -63,20 +54,21 @@ public class GameItem extends FrameLayout {
     private void initCardItem()
     {
 
-        View view = new View(mContext);
+        mContentView = new ItemView(mContext);
 
-        if (isWhite)
-        {
-            view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_bg_white));
-        }else
-        {
-            view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_bg_black));
-        }
+//        if (isWhite)
+//        {
+//            mContentView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_bg_white));
+//        }else
+//        {
+//            mContentView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_bg_black));
+//        }
+
 
 
         LayoutParams vp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        view.setLayoutParams(vp);
-        addView(view);
+        mContentView.setLayoutParams(vp);
+        addView(mContentView);
 
         mPathView = new LeftAndTopView(mContext , LeftAndTopView.ItemType.RightAndBottom, mColor);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -84,29 +76,8 @@ public class GameItem extends FrameLayout {
         addView(mPathView);
         mPathView.setVisibility(INVISIBLE);
 
-
-        contentImage = new ImageView(mContext);
-//        LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-//        layout.width = getWidth();
-//        layout.height = getHeight();
-//        contentImage.setLayoutParams(layout);
-
-        addView(contentImage);
     }
 
-    public void setRadishColor(boolean isRed)
-    {
-        if (mItemTag == 2)
-            return;
-
-        if (isRed)
-        {
-            contentImage.setImageBitmap(mRadishRed);
-        }else
-        {
-            contentImage.setImageBitmap(mRadishWhite);
-        }
-    }
 
     public void setDrawTop(boolean bool)
     {
@@ -165,36 +136,11 @@ public class GameItem extends FrameLayout {
         return mItemTag;
     }
 
-    public void setItemTag(int tag, Bitmap bitmap)
+    public void setItemTag(int tag)
     {
         mItemTag = tag;
 
-        if (mItemTag == 0)
-        {
-            Random random = new Random();
-            int id = random.nextInt(9);
-
-            contentImage.setImageBitmap(FileUtil.getBitmapFromDrawable(mContext, stone[id]));
-            float scaleX = 0.7F;
-            contentImage.setScaleX(scaleX);
-            contentImage.setScaleY(scaleX);
-        }else if (mItemTag == 1)
-        {
-            contentImage.setImageBitmap(bitmap);
-            float scaleX = 0.5F;
-            contentImage.setScaleX(scaleX);
-            contentImage.setScaleY(scaleX);
-        }else if (mItemTag == 2)
-        {
-            Random random = new Random();
-            int id = random.nextInt(3);
-
-            contentImage.setImageBitmap(FileUtil.getBitmapFromDrawable(mContext, rabbit[1]));
-            float scaleX = 1.0F;
-            contentImage.setScaleX(scaleX);
-            contentImage.setScaleY(scaleX);
-        }
-
+        mContentView.setItemTag(tag);
     }
 
     public int getRow()

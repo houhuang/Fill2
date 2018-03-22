@@ -133,7 +133,7 @@ public class GameItem extends FrameLayout {
 
     public int getItemTag()
     {
-        return mItemTag;
+        return mContentView.getItemTag();
     }
 
     public void setItemTag(int tag)
@@ -148,17 +148,10 @@ public class GameItem extends FrameLayout {
         mContentView.setItemIsclicked(isclicked);
     }
 
-    public void reverse()
-    {
-        if (mItemTag == 0 || mItemTag == 2)
-        {
-            mItemTag = 1;
-        }else if (mItemTag == 1 || mItemTag == 3)
-        {
-            mItemTag = 0;
-        }
 
-        mContentView.reverse();
+    public ItemView getContentView()
+    {
+        return mContentView;
     }
 
     public int getRow()

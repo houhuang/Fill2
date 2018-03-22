@@ -1,13 +1,18 @@
 package com.jd.fill2.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.jd.fill2.R;
+
+import java.util.Random;
 
 /**
  * Created by houhuang on 18/3/21.
@@ -15,11 +20,19 @@ import com.jd.fill2.R;
 public class ItemView extends View {
 
     private Context mContext;
-    private Paint mPaint;
-    private Paint mPaint2;
     private int mTag = 9;
     private float mRadios;
 
+    private static int mStartItemIndex = 0;
+
+    private static Bitmap mBlackBitmap;
+    private static Bitmap mWhiteBitmap;
+
+    private static Bitmap mBlackBitmap2;
+    private static Bitmap mWhiteBitmap2;
+
+    private static Bitmap mBlackBitmap3;
+    private static Bitmap mWhiteBitmap3;
 
     public ItemView(Context context) {
         super(context);
@@ -36,13 +49,20 @@ public class ItemView extends View {
 
     private void initContent()
     {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.FILL);
+        if (mBlackBitmap == null)
+        {
+            mBlackBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.black);
+            mWhiteBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.white);
 
-        mPaint2 = new Paint();
-        mPaint2.setAntiAlias(true);
-        mPaint2.setStyle(Paint.Style.STROKE);
+            mBlackBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.black1);
+            mWhiteBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.black1);
+
+            mBlackBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.black2);
+            mWhiteBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.black2);
+        }
+
+        Random random = new Random();
+        mStartItemIndex = random.nextInt(2);
 
     }
 
@@ -50,23 +70,13 @@ public class ItemView extends View {
     {
         mTag = tag;
 
-        if (tag == 0 || tag == 2)
-        {
-            mPaint.setColor(ContextCompat.getColor(mContext, R.color.color_black));
-            mPaint2.setColor(ContextCompat.getColor(mContext, R.color.color_black));
-
-        }else if (tag == 1 || tag == 3)
-        {
-            mPaint.setColor(ContextCompat.getColor(mContext, R.color.color_white));
-            mPaint2.setColor(ContextCompat.getColor(mContext, R.color.color_white));
-        }else if (tag == 9)
-        {
-            mPaint.setColor(ContextCompat.getColor(mContext, R.color.transpatent));
-        }
-
         postInvalidate();
     }
 
+    public int getItemTag()
+    {
+        return mTag;
+    }
 
     public void setItemIsclicked(boolean isClick)
     {
@@ -81,14 +91,20 @@ public class ItemView extends View {
         postInvalidate();
     }
 
-    public void reverse()
+    public void reverse(boolean isNoReverse)
     {
         if (mTag == 0 || mTag == 2)
         {
-            mTag = 1;
+            if (mTag == 2 && isNoReverse)
+                mTag = 2;
+            else
+                mTag = 1;
         }else if (mTag == 1 || mTag == 3)
         {
-            mTag = 0;
+            if (mTag == 3 && isNoReverse)
+                mTag = 3;
+            else
+                mTag = 0;
         }
 
         setItemIsclicked(false);
@@ -109,14 +125,54 @@ public class ItemView extends View {
 
         if (mTag != 9)
         {
-            if (mTag == 2 || mTag == 3)
+            switch (mTag)
             {
-                float radios = (float) (getMeasuredWidth() * 0.3);
-                mPaint2.setStrokeWidth((float) (getMeasuredWidth()*0.2));
-                canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, radios, mPaint2);
-            }else
-            {
-                canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, mRadios, mPaint);
+                case 0:
+                    // 指定图片绘制区域(左上角的四分之一)
+                    Rect src = new Rect(0,0,mBlackBitmap.getWidth(),mBlackBitmap.getHeight());
+                    // 指定图片在屏幕上显示的区域
+                    Rect dst = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    canvas.drawBitmap(mBlackBitmap,src,dst,null);
+                    break;
+
+                case 1:
+                    Rect src1 = new Rect(0,0,mWhiteBitmap.getWidth(),mWhiteBitmap.getHeight());
+                    Rect dst1 = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    canvas.drawBitmap(mWhiteBitmap,src1,dst1,null);
+                    break;
+
+                case 2:
+                    Bitmap bitmap;
+                    if (mStartItemIndex == 0)
+                    {
+                        bitmap = mBlackBitmap2;
+                    }else
+                    {
+                        bitmap = mBlackBitmap3;
+                    }
+
+                    Rect src2 = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
+                    Rect dst2 = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    canvas.drawBitmap(bitmap,src2,dst2,null);
+                    break;
+
+                case 3:
+                    Bitmap bitmap2;
+                    if (mStartItemIndex == 0)
+                    {
+                        bitmap2 = mWhiteBitmap2;
+                    }else
+                    {
+                        bitmap2 = mWhiteBitmap3;
+                    }
+
+                    Rect src3 = new Rect(0,0,bitmap2.getWidth(),bitmap2.getHeight());
+                    Rect dst3 = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    canvas.drawBitmap(bitmap2,src3,dst3,null);
+                    break;
+                default:
+                    break;
+
             }
         }
 

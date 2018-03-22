@@ -120,13 +120,13 @@
         android:layout_centerInParent="true"
         android:id="@+id/center_assist"/>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/game_tourist"
-        android:src="@drawable/touris"
-        android:layout_alignLeft="@+id/gameView"
-        android:layout_below="@+id/center_assist"/>
+    <!--<ImageView-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:id="@+id/game_tourist"-->
+        <!--android:src="@drawable/touris"-->
+        <!--android:layout_alignLeft="@+id/gameView"-->
+        <!--android:layout_below="@+id/center_assist"/>-->
 
     <FrameLayout
         android:layout_width="match_parent"

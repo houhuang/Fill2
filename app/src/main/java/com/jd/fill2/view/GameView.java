@@ -53,6 +53,8 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
     private int mHintIndex = 1;
 
+    private int mTotalTag = 0;
+
     private int[] mPathColor = {
             R.color.color_paht1,
             R.color.color_paht2,
@@ -192,15 +194,19 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 int index = i * mGameVLines + j;
                 if (mItemInfo.getState()[index] == 0)
                 {
+                    ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(0);
                 }else if (mItemInfo.getState()[index] == 1)
                 {
+                    ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(1);
                 }else if (mItemInfo.getState()[index] == 2)
                 {
+                    ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(2);
                 }else if (mItemInfo.getState()[index] == 3)
                 {
+                    ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(3);
                 }else if (mItemInfo.getState()[index] == 9)
                 {
@@ -286,10 +292,26 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     {
                         for (int i = 0; i < mAlreadyClickItem.size(); ++i )
                         {
-                            mAlreadyClickItem.get(i).reverse();
+                            if (i == 0)
+                            {
+                                mAlreadyClickItem.get(i).getContentView().reverse(false);
+                            }else
+                            {
+                                int tag = mAlreadyClickItem.get(i).getContentView().getItemTag();
+                                if (tag == 2 || tag == 3)
+                                {
+                                    mAlreadyClickItem.get(i).getContentView().reverse(true);
+                                }else
+                                {
+                                    mAlreadyClickItem.get(i).getContentView().reverse(false);
+                                }
+                            }
+
                         }
                     }
 
+                    if (isCompleted())
+                        Toast.makeText(mContext, "Completed!!!", Toast.LENGTH_SHORT).show();
 
                 }
                 mAlreadyClickItem.clear();
@@ -402,9 +424,25 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
     private boolean isCompleted()
     {
-        if (mAlreadyClickItem.size() == mNeedClickItem )
+        int count = 0;
+        for (int i = 0; i < mGameHLines; ++i)
+        {
+            for (int j = 0; j < mGameVLines; ++j)
+            {
+                if (mGameMatrix[i][j].getItemTag() != 9)
+                {
+                    count += mGameMatrix[i][j].getItemTag();
+                }
+            }
+        }
+
+        if (count == 0 || count == mTotalTag)
+        {
             return true;
-        return false;
+        }else
+        {
+            return false;
+        }
     }
 
     private boolean isAround(GameItem preItem, GameItem nexItem)

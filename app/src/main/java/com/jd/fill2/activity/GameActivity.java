@@ -262,14 +262,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateTourist()
     {
-        ImageView tourist = (ImageView)findViewById(R.id.game_tourist);
-        if (Config.mChooseLevel == 0)
-        {
-            tourist.setVisibility(View.VISIBLE);
-        }else
-        {
-            tourist.setVisibility(View.INVISIBLE);
-        }
+//        ImageView tourist = (ImageView)findViewById(R.id.game_tourist);
+//        if (Config.mChooseLevel == 0)
+//        {
+//            tourist.setVisibility(View.VISIBLE);
+//        }else
+//        {
+//            tourist.setVisibility(View.INVISIBLE);
+//        }
     }
 
     @Override

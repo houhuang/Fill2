@@ -1,5 +1,6 @@
 package com.jd.fill2.view;
 
+import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationSet;
 
 import com.jd.fill2.R;
 
@@ -38,6 +40,8 @@ public class ItemView extends View {
     private static Bitmap mBlackBitmap3;
     private static Bitmap mWhiteBitmap3;
 
+    private static Bitmap mStokeBitmap;
+
     public ItemView(Context context) {
         super(context);
         mContext = context;
@@ -63,6 +67,8 @@ public class ItemView extends View {
 
             mBlackBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.black2);
             mWhiteBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.white2);
+
+            mStokeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.stoke);
         }
 
         Random random = new Random();
@@ -133,6 +139,37 @@ public class ItemView extends View {
         });
 
         animator.start();
+
+    }
+
+    public void exactChooseAnimation()
+    {
+        final ValueAnimator ani1 = ValueAnimator.ofFloat(1, 1.1f);
+        ani1.setDuration(100);
+        ani1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float)animation.getAnimatedValue();
+                setScaleX(value);
+                setScaleY(value);
+            }
+        });
+
+        final ValueAnimator ani2 = ValueAnimator.ofFloat(1.1f, 1);
+        ani2.setDuration(100);
+        ani2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float)animation.getAnimatedValue();
+                setScaleX(value);
+                setScaleY(value);
+            }
+        });
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(ani1).before(ani2);
+        animatorSet.start();
+
     }
 
     @Override
@@ -199,6 +236,10 @@ public class ItemView extends View {
                     break;
 
             }
+
+//            Rect src3 = new Rect(0, 0, mStokeBitmap.getWidth(), mStokeBitmap.getWidth());
+//            Rect dst3 = new Rect((int)(width * 0.25), (int)(width * 0.25), (int)(width * 0.75), (int)(width * 0.75));
+//            canvas.drawBitmap(mStokeBitmap,src3,dst3,null);
         }
 
 

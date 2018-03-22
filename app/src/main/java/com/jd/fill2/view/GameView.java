@@ -2,6 +2,9 @@ package com.jd.fill2.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -238,6 +241,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     mCurrentItem = clickItem;
                     mCurrentItem.setIsclicked(true);
                     mAlreadyClickItem.add(mCurrentItem);
+                    mCurrentItem.getContentView().exactChooseAnimation();
                 }else
                 {
                     isClickStartTarget = false;
@@ -257,6 +261,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                         {
                             item.setIsclicked(true);
                             mAlreadyClickItem.add(item);
+                            mCurrentItem.getContentView().exactChooseAnimation();
                             mCurrentItem = item;
                         }
 

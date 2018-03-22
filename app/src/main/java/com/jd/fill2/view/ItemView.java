@@ -1,5 +1,6 @@
 package com.jd.fill2.view;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.jd.fill2.R;
@@ -24,6 +26,8 @@ public class ItemView extends View {
     private float mRadios;
 
     private static int mStartItemIndex = 0;
+
+    private float mValue = 1;
 
     private static Bitmap mBlackBitmap;
     private static Bitmap mWhiteBitmap;
@@ -55,10 +59,10 @@ public class ItemView extends View {
             mWhiteBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.white);
 
             mBlackBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.black1);
-            mWhiteBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.black1);
+            mWhiteBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.white1);
 
             mBlackBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.black2);
-            mWhiteBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.black2);
+            mWhiteBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.white2);
         }
 
         Random random = new Random();
@@ -96,7 +100,7 @@ public class ItemView extends View {
         if (mTag == 0 || mTag == 2)
         {
             if (mTag == 2 && isNoReverse)
-                mTag = 2;
+                mTag = 3;
             else
                 mTag = 1;
         }else if (mTag == 1 || mTag == 3)
@@ -110,6 +114,25 @@ public class ItemView extends View {
         setItemIsclicked(false);
         setItemTag(mTag);
 
+        showAnimation();
+    }
+
+    private void showAnimation()
+    {
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+        animator.setDuration(1000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mValue = (float)animation.getAnimatedValue();
+                Log.d("UUUU", String.valueOf(mValue));
+
+                setAlpha(mValue);
+                postInvalidate();
+            }
+        });
+
+        animator.start();
     }
 
     @Override
@@ -123,21 +146,23 @@ public class ItemView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        int width = (int)(1.0 * getMeasuredWidth());
+
         if (mTag != 9)
         {
             switch (mTag)
             {
                 case 0:
                     // 指定图片绘制区域(左上角的四分之一)
-                    Rect src = new Rect(0,0,mBlackBitmap.getWidth(),mBlackBitmap.getHeight());
+                    Rect src = new Rect(0, 0, mBlackBitmap.getWidth(), mBlackBitmap.getWidth());
                     // 指定图片在屏幕上显示的区域
-                    Rect dst = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    Rect dst = new Rect(0, 0, width, width);
                     canvas.drawBitmap(mBlackBitmap,src,dst,null);
                     break;
 
                 case 1:
-                    Rect src1 = new Rect(0,0,mWhiteBitmap.getWidth(),mWhiteBitmap.getHeight());
-                    Rect dst1 = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    Rect src1 = new Rect(0, 0, mWhiteBitmap.getWidth(), mWhiteBitmap.getWidth());
+                    Rect dst1 = new Rect(0, 0, width, width);
                     canvas.drawBitmap(mWhiteBitmap,src1,dst1,null);
                     break;
 
@@ -151,8 +176,8 @@ public class ItemView extends View {
                         bitmap = mBlackBitmap3;
                     }
 
-                    Rect src2 = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
-                    Rect dst2 = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    Rect src2 = new Rect(0, 0, bitmap.getWidth(), bitmap.getWidth());
+                    Rect dst2 = new Rect(0, 0, width, width);
                     canvas.drawBitmap(bitmap,src2,dst2,null);
                     break;
 
@@ -166,8 +191,8 @@ public class ItemView extends View {
                         bitmap2 = mWhiteBitmap3;
                     }
 
-                    Rect src3 = new Rect(0,0,bitmap2.getWidth(),bitmap2.getHeight());
-                    Rect dst3 = new Rect(0, 0, getMeasuredWidth(), getMeasuredWidth());
+                    Rect src3 = new Rect(0, 0, bitmap2.getWidth(), bitmap2.getWidth());
+                    Rect dst3 = new Rect(0, 0, width, width);
                     canvas.drawBitmap(bitmap2,src3,dst3,null);
                     break;
                 default:

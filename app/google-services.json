@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "2706458911913",
-    "firebase_url": "https://fill-5faf3.firebaseio.com3",
-    "project_id": "fill-5faf3",
-    "storage_bucket": "fill-5faf3.appspot.com"
+    "project_number": "539781604570",
+    "firebase_url": "https://the-same-world.firebaseio.com",
+    "project_id": "the-same-world",
+    "storage_bucket": "the-same-world.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:270645891191:android:07dab3539bac881a2",
+        "mobilesdk_app_id": "1:539781604570:android:8f55a50638f2c5fe",
         "android_client_info": {
-          "package_name": "com.jd.fill2"
+          "package_name": "com.jd.fill3"
         }
       },
       "oauth_client": [
         {
-          "client_id": "270645891191-g0suvnlrhr36248oqi19hd61hl43p5d1.apps.googleusercontent.com",
+          "client_id": "539781604570-4uigs53d585tovqjuhs6upkkj093v8kq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCLcKJAs-0AGwa55Wxq3IGuc2mgFnD4mhcc"
+          "current_key": "AIzaSyBiSTPjqwCTpHAwfX_v_Ktg8atgcFM9ai8"
         }
       ],
       "services": {

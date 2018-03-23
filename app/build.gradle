@@ -6,7 +6,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.jd.fill2"
+        applicationId "com.jd.fill3"
         minSdkVersion 18
         targetSdkVersion 25
         versionCode 100

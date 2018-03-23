@@ -19,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:background="@color/toolbar_line"/>
 
-        <com.jd.fill2.utilView.HequalVButton
+        <com.jd.fill3.utilView.HequalVButton
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/game_back"
@@ -105,14 +105,14 @@
 
     </RelativeLayout>
 
-    <com.jd.fill2.view.GameView
+    <com.jd.fill3.view.GameView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gameView"
         android:layout_centerInParent="true"
         android:layout_margin="20px">
 
-    </com.jd.fill2.view.GameView>
+    </com.jd.fill3.view.GameView>
 
     <View
         android:layout_width="match_parent"

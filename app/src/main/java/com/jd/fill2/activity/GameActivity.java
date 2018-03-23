@@ -2,8 +2,10 @@ package com.jd.fill2.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.jd.fill2.R;
@@ -73,22 +75,28 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void bindView()
     {
         mGameView = (GameView)findViewById(R.id.gameView);
+        mGameView.setBackgroundColor(ContextCompat.getColor(this, R.color.transpatent));
         mGameView.setGameViewListener(new GameView.OnGameCompletedListener() {
             @Override
             public void OnCompleted() {
 
-                showWinFragment();
                 if (Config.mChooseLevel == Config.mCurrentLevel)
                 {
                     Config.mCurrentLevel ++;
                     Config.saveConfigInfo();
                 }
 
+                showWinFragment(true);
             }
 
             @Override
             public void OnHintSucc() {
                 mHintText.setText("" + Config.mHintNum);
+            }
+
+            @Override
+            public void OnFaild() {
+                showWinFragment(false);
             }
         });
 
@@ -126,7 +134,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void OnPlay() {
                 if (Config.mChooseLevel < DataManager.getInstance().getmGameInfo().size() - 1)
+                {
+                    Config.mChooseLevel ++;
                     nextLevel();
+                }else
+                {
+                    finish();
+                }
+
             }
 
             @Override
@@ -142,19 +157,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             public void OnShare() {
                 GeneralUtil.shareText(getApplicationContext());
             }
+
+            @Override
+            public void OnFaild() {
+                nextLevel();
+            }
         });
 
         updateTourist();
+
     }
 
     private void nextLevel()
     {
         mHintText.setText("" + Config.mHintNum);
-        Config.mChooseLevel = Config.mCurrentLevel;
-        if (Config.mChooseLevel == DataManager.getInstance().getmGameInfo().size())
-        {
-            Config.mChooseLevel = DataManager.getInstance().getmGameInfo().size() - 1;
-        }
 
         StringBuilder builder = new StringBuilder();
         builder.append("Level - ").append(Config.mChooseLevel + 1);
@@ -196,10 +212,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentParent.setVisibility(View.GONE);
     }
 
-    private void showWinFragment()
+    private void showWinFragment(boolean isWin)
     {
 //        mAdView.setVisibility(View.INVISIBLE);
-        mWinFragment.updateContent();
+        mWinFragment.updateContent(isWin);
         mFragmentParent.setVisibility(View.VISIBLE);
 
     }

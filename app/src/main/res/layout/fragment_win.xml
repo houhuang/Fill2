@@ -24,12 +24,14 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:id="@+id/star_icon"
                 android:layout_gravity="center"
                 android:src="@drawable/star"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/win_title"
                 android:text="CLEAR"
                 android:textColor="@color/map_item_content_pass"
                 android:textSize="45sp"
@@ -116,6 +118,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/btn_play_icon"
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
                 android:src="@drawable/play"

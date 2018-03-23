@@ -127,20 +127,20 @@ public class AdsManager {
 
     public static void showIntertitialAd()
     {
-        if (mInterstitialAd.isLoaded())
-            mInterstitialAd.show();
+//        if (mInterstitialAd.isLoaded())
+//            mInterstitialAd.show();
     }
 
     public static void showRewardAds()
     {
-        if (mRewardedVideoAd.isLoaded())
-        {
-            mRewardedVideoAd.show();
-        }else
-        {
-            if (mDelegate != null)
-                mDelegate.onRewardLoadFaild();
-        }
+//        if (mRewardedVideoAd.isLoaded())
+//        {
+//            mRewardedVideoAd.show();
+//        }else
+//        {
+//            if (mDelegate != null)
+//                mDelegate.onRewardLoadFaild();
+//        }
     }
 
     public static RewardedVideoAd getRewardAdsInstance()

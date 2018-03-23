@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -209,6 +210,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void hideWinFragment()
     {
 //        mAdView.setVisibility(View.VISIBLE);
+
         mFragmentParent.setVisibility(View.GONE);
     }
 
@@ -217,6 +219,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 //        mAdView.setVisibility(View.INVISIBLE);
         mWinFragment.updateContent(isWin);
         mFragmentParent.setVisibility(View.VISIBLE);
+        mFragmentParent.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_bottom_top));
 
     }
 

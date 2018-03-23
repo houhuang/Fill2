@@ -261,10 +261,15 @@ public class ItemView extends View {
                 if (mTag == 0 || mTag == 2)
                 {
                     canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, getMeasuredWidth()/3, mWhiteDotPaint);
+
                 }else
                 {
                     canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, getMeasuredWidth()/3, mBlackDotPaint);
                 }
+
+                Rect src3 = new Rect(0, 0, mStokeBitmap.getWidth(), mStokeBitmap.getWidth());
+                Rect dst3 = new Rect((int)(width * 0.1), (int)(width * 0.1), (int)(width * 0.9), (int)(width * 0.9));
+                canvas.drawBitmap(mStokeBitmap,src3,dst3,null);
             }
         }
 

@@ -373,10 +373,6 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     mAlreadyClickItem.add(mCurrentItem);
                     mCurrentItem.getContentView().exactChooseAnimation();
 
-                    Point point = new Point();
-                    point.set(mCurrentItem.getLeft() + mCurrentItem.getWidth()/2, mCurrentItem.getTop() + mCurrentItem.getHeight()/2);
-                    mLinePathVer.add(point);
-
                 }else
                 {
                     isClickStartTarget = false;

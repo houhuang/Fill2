@@ -48,7 +48,7 @@ public class Config extends Application {
         mSp = getSharedPreferences(SP_DATA_STORGE, 0);
         mCurrentLevel = mSp.getInt(KEY_CURRENT_LEVEL, 1);
         mSoundsIsOpen = mSp.getBoolean(KEY_SHOUNDS_ISOPEN, true);
-        mHintNum = mSp.getInt(KEY_HINT_NUM, 20);
+        mHintNum = mSp.getInt(KEY_HINT_NUM, 5);
 
         mIsRateus = mSp.getBoolean(KEY_ALREADY_RATEUS, false);
         mRateUsCount = mSp.getInt(KEY_RATEUS_COUNT, 0);

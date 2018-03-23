@@ -376,6 +376,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     Point point = new Point();
                     point.set(mCurrentItem.getLeft() + mCurrentItem.getWidth()/2, mCurrentItem.getTop() + mCurrentItem.getHeight()/2);
                     mLinePathVer.add(point);
+
                 }else
                 {
                     isClickStartTarget = false;

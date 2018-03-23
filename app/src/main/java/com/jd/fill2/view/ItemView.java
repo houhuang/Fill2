@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
@@ -42,6 +43,11 @@ public class ItemView extends View {
 
     private static Bitmap mStokeBitmap;
 
+    private boolean mSelected = false;
+
+    private Paint mWhiteDotPaint;
+    private Paint mBlackDotPaint;
+
     public ItemView(Context context) {
         super(context);
         mContext = context;
@@ -74,6 +80,17 @@ public class ItemView extends View {
         Random random = new Random();
         mStartItemIndex = random.nextInt(2);
 
+        mWhiteDotPaint = new Paint();
+        mWhiteDotPaint.setAntiAlias(true);
+        mWhiteDotPaint.setColor(Color.parseColor("#FFFFFF"));
+        mWhiteDotPaint.setStyle(Paint.Style.FILL);
+
+        mBlackDotPaint = new Paint();
+        mBlackDotPaint.setAntiAlias(true);
+        mBlackDotPaint.setColor(Color.parseColor("#000000"));
+        mBlackDotPaint.setStyle(Paint.Style.FILL);
+
+
     }
 
     public void setItemTag(int tag)
@@ -97,6 +114,8 @@ public class ItemView extends View {
         {
             mRadios = (float) (getMeasuredWidth() * 0.4);
         }
+
+        mSelected = isClick;
 
         postInvalidate();
     }
@@ -237,11 +256,17 @@ public class ItemView extends View {
 
             }
 
-//            Rect src3 = new Rect(0, 0, mStokeBitmap.getWidth(), mStokeBitmap.getWidth());
-//            Rect dst3 = new Rect((int)(width * 0.25), (int)(width * 0.25), (int)(width * 0.75), (int)(width * 0.75));
-//            canvas.drawBitmap(mStokeBitmap,src3,dst3,null);
+            if (mSelected)
+            {
+                if (mTag == 0 || mTag == 2)
+                {
+                    canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, getMeasuredWidth()/3, mWhiteDotPaint);
+                }else
+                {
+                    canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, getMeasuredWidth()/3, mBlackDotPaint);
+                }
+            }
         }
-
 
     }
 }

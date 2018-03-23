@@ -124,14 +124,14 @@ public class MapAdapter extends RecyclerView.Adapter<MapAdapter.MapHolder> {
             holder.mStageText.setVisibility(View.VISIBLE);
         }
 
-        if (newPos >= Config.mCurrentLevel)
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.append(DataManager.getInstance().getmGameInfo().get(newPos).getRow())
-                    .append("x")
-                    .append(DataManager.getInstance().getmGameInfo().get(newPos).getCol());
-            holder.mStageText.setText(builder.toString());
-        }
+//        if (newPos >= Config.mCurrentLevel)
+//        {
+//            StringBuilder builder = new StringBuilder();
+//            builder.append(DataManager.getInstance().getmGameInfo().get(newPos).getRow())
+//                    .append("x")
+//                    .append(DataManager.getInstance().getmGameInfo().get(newPos).getCol());
+//            holder.mStageText.setText(builder.toString());
+//        }
 
         holder.mLevelTextView.setText("" + (newPos + 1));
 

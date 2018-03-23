@@ -123,14 +123,15 @@ public class WinFragment extends Fragment implements View.OnClickListener {
         StringBuilder builder = new StringBuilder();
         builder.append("Level - ").append(Config.mChooseLevel + 1);
 
-        if ( Config.mChooseLevel >= DataManager.getInstance().getmGameInfo().size() - 1)
+        if ( Config.mChooseLevel >= DataManager.getInstance().getmGameInfo().size() - 1 && isWin)
         {
             builder.append("- Max");
         }
 
         mLevelText.setText(builder.toString());
 
-        if ((Config.mChooseLevel == Config.mCurrentLevel) &&
+
+        if (isWin && (Config.mChooseLevel == Config.mCurrentLevel) &&
                 ((Config.mCurrentLevel + 1) % 5 == 0))
         {
             mHintView.setVisibility(View.VISIBLE);

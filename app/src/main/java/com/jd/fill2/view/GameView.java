@@ -14,6 +14,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.util.AttributeSet;
@@ -45,8 +46,9 @@ import java.util.Random;
  */
 
 public class GameView extends GridLayout implements View.OnTouchListener {
-    private GameItem[][] mGameMatrix;
 
+    private GameItem[][] mGameMatrix;
+    private int[][] mOriginalTag; //为了随时能够hint，不然中途tag改变 会crash
 
     private int mGameVLines;
     private int mGameHLines;
@@ -66,9 +68,12 @@ public class GameView extends GridLayout implements View.OnTouchListener {
     private int mTotalTag = 0;
 
     private Paint mLinePaint;
+    private Paint mLinePaint2;
     private Path mLinePath;
+    private Path mLinePath2;
 
     private List<Point> mLinePathVer = new ArrayList<Point>();
+    private List<Point> mLinePathVer2 = new ArrayList<Point>();
 
     private int[] mPathColor = {
             R.color.color_paht1,
@@ -124,7 +129,14 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         mLinePaint.setStrokeWidth(5);
         mLinePaint.setPathEffect(new PathDashPathEffect(path, 15, 0, PathDashPathEffect.Style.ROTATE));
 
+        mLinePaint2 = new Paint();
+        mLinePaint2.setAntiAlias(true);
+        mLinePaint2.setColor(Color.RED);
+        mLinePaint2.setStyle(Paint.Style.STROKE);
+        mLinePaint2.setStrokeWidth(5);
+
         mLinePath = new Path();
+        mLinePath2 = new Path();
     }
 
     public void nextGame()
@@ -154,6 +166,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         mGameHLines = mItemInfo.getRow();
         mGameVLines = mItemInfo.getCol();
         mGameMatrix = new GameItem[mGameHLines][mGameVLines];
+        mOriginalTag = new int[mGameHLines][mGameVLines];
 
         setColumnCount(mGameVLines);
         setRowCount(mGameHLines);
@@ -233,21 +246,26 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 {
                     ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(0);
+                    mOriginalTag[i][j] = 0;
                 }else if (mItemInfo.getState()[index] == 1)
                 {
                     ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(1);
+                    mOriginalTag[i][j] = 1;
                 }else if (mItemInfo.getState()[index] == 2)
                 {
                     ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(2);
+                    mOriginalTag[i][j] = 2;
                 }else if (mItemInfo.getState()[index] == 3)
                 {
                     ++mTotalTag;
                     mGameMatrix[i][j].setItemTag(3);
+                    mOriginalTag[i][j] = 3;
                 }else if (mItemInfo.getState()[index] == 9)
                 {
                     mGameMatrix[i][j].setItemTag(9);
+                    mOriginalTag[i][j] = 9;
 
                 }
 
@@ -273,7 +291,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 for (int j = 0; j < mGameVLines; ++j)
                 {
                     GameItem item = mGameMatrix[i][j];
-                    if (item.getItemTag() == 2 || item.getItemTag() == 3)
+                    if (mOriginalTag[i][j] == 2 || mOriginalTag[i][j] == 3)
                     {
                         Point point = new Point();
                         point.set(item.getLeft() + item.getWidth()/2, item.getTop() + item.getHeight()/2);
@@ -297,7 +315,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 for (int j = mGameVLines - 1; j >= 0; --j)
                 {
                     GameItem item = mGameMatrix[i][j];
-                    if (item.getItemTag() == 2 || item.getItemTag() == 3)
+                    if (mOriginalTag[i][j] == 2 || mOriginalTag[i][j] == 3)
                     {
                         Point point = new Point();
                         point.set(item.getLeft() + item.getWidth()/2, item.getTop() + item.getHeight()/2);
@@ -373,6 +391,9 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     mAlreadyClickItem.add(mCurrentItem);
                     mCurrentItem.getContentView().exactChooseAnimation();
 
+                    Point point = new Point();
+                    point.set(mCurrentItem.getLeft() + mCurrentItem.getWidth()/2, mCurrentItem.getTop() + mCurrentItem.getHeight()/2);
+                    mLinePathVer2.add(point);
                 }else
                 {
                     isClickStartTarget = false;
@@ -395,6 +416,10 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                             mCurrentItem.getContentView().exactChooseAnimation();
                             mCurrentItem = item;
 
+                            Point point = new Point();
+                            point.set(mCurrentItem.getLeft() + mCurrentItem.getWidth()/2, mCurrentItem.getTop() + mCurrentItem.getHeight()/2);
+                            mLinePathVer2.add(point);
+                            postInvalidate();
                         }
 
                     }else
@@ -408,6 +433,9 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                                 mAlreadyClickItem.get(index).setIsclicked(false);
                                 mAlreadyClickItem.remove(index);
                                 mCurrentItem = mAlreadyClickItem.get(index - 1);
+
+                                mLinePathVer2.remove(mLinePathVer2.size() - 1);
+                                postInvalidate();
 
                             }
 
@@ -463,6 +491,8 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 mAlreadyClickItem.clear();
                 isClickStartTarget = false;
 
+                mLinePathVer2.clear();
+                postInvalidate();
 
             }
             break;
@@ -481,6 +511,12 @@ public class GameView extends GridLayout implements View.OnTouchListener {
             mIsHint = true;
             initHintsData();
             postInvalidate();
+
+            Config.mHintNum --;
+            Config.saveConfigInfo();
+
+            if (listener != null)
+                listener.OnHintSucc();
         }
 
     }
@@ -584,6 +620,21 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         }
 
         canvas.drawPath(mLinePath, mLinePaint);
+
+
+        mLinePath2.reset();
+
+        if (mLinePathVer2.size() >= 2)
+        {
+            mLinePath2.moveTo(mLinePathVer2.get(0).x, mLinePathVer2.get(0).y);
+
+            for (int i = 1; i < mLinePathVer2.size(); ++i)
+            {
+                mLinePath2.lineTo(mLinePathVer2.get(i).x, mLinePathVer2.get(i).y);
+            }
+        }
+
+        canvas.drawPath(mLinePath2, mLinePaint2);
 
     }
 

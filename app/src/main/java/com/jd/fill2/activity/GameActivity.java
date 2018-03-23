@@ -3,6 +3,7 @@ package com.jd.fill2.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -58,6 +59,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         StatusBarUtil.setWindowStatusBarColor(this, R.color.status_bar_map_color);
         StatusBarUtil.StatusBarLightMode(this);
 
+
 //        mAdView = (AdView) findViewById(R.id.banner_View);
 //        mAdRequest = new AdRequest.Builder().addTestDevice(AdsManager.TEST_DEVICE_ID).build();
 //        mAdView.loadAd(mAdRequest);
@@ -87,7 +89,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     Config.saveConfigInfo();
                 }
 
-                showWinFragment(true);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showWinFragment(true);
+                    }
+                }, 700);
             }
 
             @Override
@@ -97,7 +104,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void OnFaild() {
-                showWinFragment(false);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showWinFragment(false);
+                    }
+                }, 700);
             }
         });
 
